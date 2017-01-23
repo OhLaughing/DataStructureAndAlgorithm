@@ -3,10 +3,10 @@
 public class MergeSortedArray {
     public static int[] mergeSortArray(int[] arr1, int[] arr2) {
         int[] mergeArray = new int[arr1.length + arr2.length];
-        int i;         //arr1
-        int j;         //arr2
-        int k = 0;     //mergeArray
-        for (i = 0, j = 0; i < arr1.length && j < arr2.length; ) {
+        int i = 0;         //index in arr1
+        int j = 0;         //index in arr2
+        int k = 0;         //index in mergeArray
+        while (i < arr1.length && j < arr2.length) {
             if (arr1[i] < arr2[j])
                 mergeArray[k++] = arr1[i++];
             else
