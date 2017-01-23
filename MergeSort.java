@@ -1,3 +1,5 @@
+/*归并排序算法
+*/
 public class MergeSort {
     public static void mergeSort(int[] array) {
         if(array.length < 2)
