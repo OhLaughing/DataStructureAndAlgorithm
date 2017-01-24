@@ -1,4 +1,7 @@
-
+package DataStructureAndAlgorithm;
+/*
+冒泡排序算法实现，时间复杂度O（n2）
+ */
 public class BubbleSort {
 	public static void bubbleSort(int[] list) {
 		boolean needNextPass = true;
