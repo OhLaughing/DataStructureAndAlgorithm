@@ -1,4 +1,6 @@
-/*归并排序算法
+package DataStructureAndAlgorithm;
+
+/*归并排序算法， 时间复杂度O（nlgn）
 */
 public class MergeSort {
     public static void mergeSort(int[] array) {
