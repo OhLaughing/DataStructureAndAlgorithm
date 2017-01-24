@@ -1,8 +1,14 @@
+package DataStructureAndAlgorithm;
+
+import java.util.List;
+import java.util.ArrayList;
+import java.util.LinkedList;
+
 /*
  对比ArrayList和LinkedList的性能
 */
 public class CompareArrayListAndLinkedList {
-  public stativ void main(String[] args) {
+  public static void main(String[] args) {
         //测试ArrayList
         List<Integer> list = new ArrayList<>();
         long startTime = System.currentTimeMillis();
@@ -42,3 +48,4 @@ public class CompareArrayListAndLinkedList {
         System.out.println("LinkdedList: " + String.valueOf(System.currentTimeMillis() - startTime3));
     }
 }
+
