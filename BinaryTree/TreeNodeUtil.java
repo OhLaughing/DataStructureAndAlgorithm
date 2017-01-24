@@ -24,34 +24,39 @@ public class TreeNodeUtil {
     public static void inOrder(TreeNode root) {
         if(root == null)
             return;
-        preOrder(root.left);
+        inOrder(root.left);
         System.out.print(root.element + " ");
-        preOrder(root.right);
+        inOrder(root.right);
     }
 
     /**
-     * 后续遍历
+     * 后序遍历
      * @param root 跟节点
      */
     public static void postOrder(TreeNode root) {
-        preOrder(root.left);
-        preOrder(root.right);
+        if(root == null)
+            return;
+        postOrder(root.left);
+        postOrder(root.right);
         System.out.print(root.element + " ");
     }
 
     public static void main(String[] args) {
         /*
                           60
-                      55      100
-                   45   57  67   107
+                      55       100
+                   45   57    67   107
+                          59      101
          */
         TreeNode<Integer> root = new TreeNode<Integer>(60);
-        root.left = new TreeNode(55);
-        root.right = new TreeNode(100);
-        root.left.left = new TreeNode(45);
-        root.left.right = new TreeNode(57);
-        root.right.left = new TreeNode(67);
-        root.right.right = new TreeNode(107);
+        root.left = new TreeNode<>(55);
+        root.right = new TreeNode<>(100);
+        root.left.left = new TreeNode<>(45);
+        root.left.right = new TreeNode<>(57);
+        root.left.right.right = new TreeNode<>(59);
+        root.right.left = new TreeNode<>(67);
+        root.right.right = new TreeNode<>(107);
+        root.right.right.left = new TreeNode<>(101);
 
         preOrder(root);
         System.out.println("\n--------------------");
