@@ -1,3 +1,5 @@
+package DataStructureAndAlgorithm;
+
 /*数组arr1和数组arr2都是已经排序的数组，该方法返回将数组arr1和arr2合并后的数组
 */
 public class MergeSortedArray {
