@@ -1,2 +1,16 @@
 BTS: binary search Tree
 左子树的节点小于当前节点的值，右子树的节点大于当前节点的值
+从BST中删除一个元素：
+boolean delete(E e) {
+  locate element e in the tree
+  if element e is not found:
+    return false;
+  Let current be the node that contain element e and parent be the parent of current:
+  if(current has no left child)
+    connect the right child of current with parent, now current is not referenced, so it is eliminated
+  else   //
+    locate the rightmost node in the left subtree of current
+    copy the element value in the rightmost node to current
+    connect the parent of the rightmost to the left child of rightmost
+  return true
+}
