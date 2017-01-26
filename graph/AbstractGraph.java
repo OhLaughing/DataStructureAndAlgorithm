@@ -118,6 +118,18 @@ public abstract class AbstractGraph<V> implements Graph<V> {
         }
     }
 
+    public void printEdges() {
+
+    }
+
+    public Tree dfs(int v) {
+        return null;
+    }
+
+    public Tree bfs(int v) {
+        return null;
+    }
+
 
     public class Tree {
         private int root;
