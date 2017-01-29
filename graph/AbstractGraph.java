@@ -123,7 +123,27 @@ public abstract class AbstractGraph<V> implements Graph<V> {
     }
 
     public Tree dfs(int v) {
-        return null;
+        List<Integer> searchOrders = new ArrayList<>();
+        int[] parent = new int[vertices.size()];
+        for (int i = 0; i < parent.length; i++) {
+            parent[i] = -1;
+        }
+        boolean[] isVisited = new boolean[vertices.size()];
+
+        dfs(v, parent, searchOrders, isVisited);
+        return new Tree(v, parent, searchOrders);
+    }
+
+    private void dfs(int v, int[] parent, List<Integer> searchOrders, boolean[] isVisited) {
+        searchOrders.add(v);
+        isVisited[v] = true;
+
+        for(int i : neighbors.get(v)) {
+            if(!isVisited[i]) {
+                parent[i] = v;
+                dfs(i, parent, searchOrders, isVisited);
+            }
+        }
     }
 
     public Tree bfs(int v) {
