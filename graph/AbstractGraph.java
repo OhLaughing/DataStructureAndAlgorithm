@@ -112,7 +112,7 @@ public abstract class AbstractGraph<V> implements Graph<V> {
         int[][] adjacencyMatrix = getAdjacencyMatrix();
         for (int i = 0; i < adjacencyMatrix.length; i++) {
             for (int j = 0; j < adjacencyMatrix[i].length; j++) {
-                System.out.print(adjacencyMatrix[i][j]  + " ");
+                System.out.print(adjacencyMatrix[i][j] + " ");
             }
             System.out.println();
         }
@@ -138,8 +138,8 @@ public abstract class AbstractGraph<V> implements Graph<V> {
         searchOrders.add(v);
         isVisited[v] = true;
 
-        for(int i : neighbors.get(v)) {
-            if(!isVisited[i]) {
+        for (int i : neighbors.get(v)) {
+            if (!isVisited[i]) {
                 parent[i] = v;
                 dfs(i, parent, searchOrders, isVisited);
             }
@@ -161,29 +161,107 @@ public abstract class AbstractGraph<V> implements Graph<V> {
             this.parent = parent;
             this.searchOrders = searchOrders;
         }
+
         public Tree(int root, int[] parent) {
             this.root = root;
             this.parent = parent;
         }
+
         public int getRoot() {
             return root;
         }
+
         public int getParent(int v) {
             return parent[v];
         }
+
         public List<Integer> getSearchOrders() {
             return searchOrders;
         }
+
         public int getNumberOfVerticesFound() {
             return searchOrders.size();
         }
+
         public List<V> getPath(int index) {
             ArrayList<V> path = new ArrayList<V>();
             do {
                 path.add(vertices.get(index));
                 index = parent[index];
-            } while(index != -1);
+            } while (index != -1);
             return path;
         }
+    }
+
+    public java.util.List<Integer> getHamiltonianPath(V vertex) {
+        return getHamiltonianPath(getIndex(vertex));
+    }
+
+    public List<Integer> getHamiltonianPath(int v) {
+        int[] next = new int[getSize()];
+        for (int i = 0; i < next.length; i++) {
+            next[i] = -1;
+        }
+        boolean[] isVisited = new boolean[getSize()];
+
+        List<Integer> result = null;
+
+        for (int i = 0; i < getSize(); i++) {
+            reorderNeigborsBaseOnDegree(neighbors.get(i));
+        }
+        if (getHamiltonianPath(v, next, isVisited)) {
+            result = new ArrayList<Integer>();
+            int vertex = v;
+            while (vertex != -1) {
+                result.add(vertex);
+                vertex = next[vertex];
+            }
+        }
+        return result;
+    }
+
+    private void reorderNeigborsBaseOnDegree(List<Integer> list) {
+        for (int i = list.size(); i >= 1; i--) {
+            int currentMaxDegree = getDegree(list.get(0));
+            int currentMaxIndex = 0;
+
+            for (int j = 0; j < i; j++) {
+                if (currentMaxDegree < getDegree(list.get(j))) {
+                    currentMaxDegree = getDegree(list.get(j));
+                    currentMaxIndex = j;
+                }
+            }
+            if (currentMaxIndex != i) {
+                int temp = list.get(currentMaxIndex);
+                list.set(currentMaxIndex, list.get(i));
+                list.set(i, temp);
+            }
+        }
+    }
+
+    private boolean allVisited(boolean[] isVisited) {
+        boolean result = true;
+
+        for (int i = 0; i < getSize(); i++) {
+            result = result & isVisited[i];
+        }
+        return result;
+    }
+
+    private boolean getHamiltonianPath(int v, int[] next, boolean[] isVisited) {
+        isVisited[v] = true;
+
+        if (allVisited(isVisited))
+            return true;
+
+        for (int i = 0; i < neighbors.get(v).size(); i++) {
+            int u = neighbors.get(v).get(i);
+            if (!isVisited[u] && getHamiltonianPath(u, next, isVisited)) {
+                next[v] = u;
+                return true;
+            }
+        }
+        isVisited[v] = false;
+        return false;
     }
 }

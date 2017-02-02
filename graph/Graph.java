@@ -27,4 +27,8 @@ public interface Graph<V> {
 
     public AbstractGraph<V>.Tree bfs(int v);
 
+    public java.util.List<Integer> getHamiltonianPath(V vertex);
+
+    public java.util.List<Integer> getHamiltonianPath(int index);
+
 }
