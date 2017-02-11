@@ -1,4 +1,4 @@
-package ALLTEST;
+package DataStructureAndAlgorithm;
 
 import javax.swing.*;
 import java.awt.*;
