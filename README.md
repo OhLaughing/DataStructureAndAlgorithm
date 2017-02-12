@@ -1,2 +1,5 @@
 # DataStructureAndAlgorithm
 数据结构和算法的一些代码
+
+SortGUI/BubbleSortGUI 通过GUI演示了冒泡排序算法，但是该算法是缺点是，不管原来数组是什么样，都执行固定此时的遍历
+SortGUI/ImprovedBubbleSortGUI，该算法是改进的冒泡排序算法，如果某次遍历过程中，没有顺序变化，则没有必要进行下次遍历，则终止排序
