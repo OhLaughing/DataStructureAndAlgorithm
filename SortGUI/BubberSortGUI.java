@@ -1,4 +1,4 @@
-package DataStructureAndAlgorithm;
+package DataStructureAndAlgorithm.SortGUI;
 
 import javax.swing.*;
 import java.awt.*;
