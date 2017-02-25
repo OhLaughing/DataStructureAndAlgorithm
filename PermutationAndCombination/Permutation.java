@@ -7,27 +7,30 @@ import java.util.List;
  * Created by gustaov on 2017/2/21.
  */
 public class Permutation {
+    List<List<Integer>> result;
+    boolean[] visited;
     public List<List<Integer>> permute(int[] nums) {
-        List<List<Integer>> result = new ArrayList<>();
+        result = new ArrayList<>();
         List<Integer> out = new ArrayList<>();
-        boolean[] visited = new boolean[nums.length];
-        permuteDFS(nums, 0, visited, out, result);
+        visited = new boolean[nums.length];
+        permuteDFS(nums, out);
         return result;
     }
 
-    void permuteDFS(int[] nums, int level, boolean[] visited, List<Integer> out, List<List<Integer>> result) {
-        if (level == nums.length) {
+    void permuteDFS(int[] nums,  List<Integer> out) {
+        if (out.size() == nums.length) {
             List<Integer> temp = new ArrayList<Integer>(out);
             result.add(temp);
         }
         else {
             for (int i = 0; i < nums.length; i++) {
-                if (visited[i] == false) {
+                if(visited[i])
+                    continue;
                     visited[i] = true;
                     out.add(nums[i]);
-                    permuteDFS(nums, level + 1, visited, out, result);
-                    out.remove(level);
-                }
+                    permuteDFS(nums, out);
+                    out.remove(out.size()-1);
+                    visited[i] = false;
             }
         }
     }
